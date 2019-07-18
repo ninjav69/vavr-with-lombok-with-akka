@@ -1,0 +1,47 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: GreetingPlugin
+
+description = 'A sample project to learn gradle concepts'
+version = 0.1
+sourceCompatibility = 1.8
+
+class GreetingPlugin implements Plugin<Project> {
+	void apply(Project project) {
+		project.task('hello') <<  {
+			println 'Hello from the GreetingPlugin'
+		}
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Logging
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-beta4'
+	compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.8.0-beta4'
+	compile group: 'log4j', name: 'log4j', version: '1.2+'
+	// Akka
+	compile 'com.typesafe.akka:akka-actor_2.12:2.6.0-M2'
+	testCompile 'com.typesafe.akka:akka-testkit_2.12:2.6.0-M2'
+	// Testing
+	testCompile group: 'junit', name: 'junit', version: '4.+'
+	compile group: 'io.vavr', name: 'vavr', version: '0.10.0'
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.18.8'
+}
+
+mainClassName = 'org.ninjav.Application'
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'org.ninjav.Application'
+	}
+}
+
+run {
+	standardInput = System.in
+}
+
+
