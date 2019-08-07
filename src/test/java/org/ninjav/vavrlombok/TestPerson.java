@@ -12,6 +12,8 @@ public class TestPerson {
         TestPerson.Person p = new TestPerson.Person("Alan", "Pickard");
         assertThat(p.getName(), is("Alan"));
         assertThat(p.getSurname(), is("Pickard"));
+
+        System.out.println(p);
     }
 
     @Value

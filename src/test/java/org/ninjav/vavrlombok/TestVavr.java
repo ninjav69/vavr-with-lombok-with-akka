@@ -3,6 +3,7 @@ package org.ninjav.vavrlombok;
 import io.vavr.*;
 import io.vavr.collection.List;
 import io.vavr.collection.Seq;
+import io.vavr.collection.Stream;
 import io.vavr.control.Option;
 import io.vavr.control.Try;
 import io.vavr.control.Validation;
@@ -200,4 +201,16 @@ public class TestVavr {
         invalid.getError().forEach(e -> System.out.println(e));
     }
 
+    @Test
+    public void infiniteStream() {
+        for (double random : Stream.continually(Math::random).take(100)) {
+            System.out.println(random);
+        }
+
+        Stream.from(1)
+                .filter(i -> i % 2 == 0)
+                .take(100)
+                .toList()
+                .forEach(System.out::println);
+    }
 }
