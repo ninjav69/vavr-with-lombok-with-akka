@@ -1,6 +1,7 @@
 package org.ninjav.vavrlombok;
 
 import io.vavr.*;
+import io.vavr.collection.Array;
 import io.vavr.collection.List;
 import io.vavr.collection.Seq;
 import io.vavr.collection.Stream;
@@ -11,17 +12,17 @@ import lombok.Value;
 import lombok.val;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import static io.vavr.API.*;
 import static io.vavr.Predicates.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestVavr {
-    @Test
-    public void nothing() {
-        assertThat(true, is(true));
-    }
-
     @Test
     public void createATuple() {
         Tuple2<String, Integer> java8 = Tuple.of("Java", 8);
@@ -193,7 +194,7 @@ public class TestVavr {
     @Test
     public void validation() {
         PersonValidator validator = new PersonValidator();
-        Validation<Seq<String>, Person> valid =  validator.validatePerson("Alan", "Pickard", 41);
+        Validation<Seq<String>, Person> valid = validator.validatePerson("Alan", "Pickard", 41);
         assertThat(valid.isValid(), is(true));
         Validation<Seq<String>, Person> invalid = validator.validatePerson("Koos", null, 16);
         assertThat(invalid.isInvalid(), is(true));
@@ -213,4 +214,5 @@ public class TestVavr {
                 .toList()
                 .forEach(System.out::println);
     }
+
 }

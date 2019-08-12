@@ -1,10 +1,12 @@
 package org.ninjav.id;
 
+import io.vavr.collection.Stream;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 // See infos of ID number format:
@@ -100,5 +102,26 @@ public class TestGenrateRSAId {
         String id = "880123511108";
         int result = luhn(id);
         assertThat(result, is(8));
+    }
+
+    @Test
+    public void func() {
+
+        io.vavr.collection.List<Integer> list = io.vavr.collection.List.of(1, 2, 3, 4, 5, 6);
+
+        list.map(RSAId.doubleIt)
+                .map(RSAId.fadic)
+                .forEach(System.out::println);
+    }
+
+    public static class RSAId {
+        public static final Function<Integer, Integer> doubleIt = x -> x * 2;
+        static final Function<Integer, io.vavr.collection.List<Integer>> digitToInts = x ->
+                Stream.of(String.format("%d", x).split(""))
+                        .map(Integer::parseInt)
+                        .toList();
+        public static final Function<Integer, Integer> fadic = x -> x > 9
+                ? RSAId.fadic.apply(digitToInts.apply(x).sum().intValue())
+                : x;
     }
 }
