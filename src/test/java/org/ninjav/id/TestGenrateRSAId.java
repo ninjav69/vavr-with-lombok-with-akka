@@ -21,11 +21,12 @@ public class TestGenrateRSAId {
 
     @Test
     public void TestMakeIdNumbersForKoketso() {
-        System.out.println("Male 05/05/2000: " + makeIdNumber(0, 5, 5, MALE));
-        System.out.println("Male 25/12/2018: " + makeIdNumber(18, 12, 25, MALE));
-
-        System.out.println("Female 19/07/2006: " + makeIdNumber(6, 7, 19, FEMALE));
-        System.out.println("Female 01/09/2015: " + makeIdNumber(15, 9, 1, FEMALE));
+//        System.out.println("Male 05/05/2000: " + makeIdNumber(0, 5, 5, MALE));
+//        System.out.println("Male 25/12/2018: " + makeIdNumber(18, 12, 25, MALE));
+//
+//        System.out.println("Female 19/07/2006: " + makeIdNumber(6, 7, 19, FEMALE));
+//        System.out.println("Female 01/09/2015: " + makeIdNumber(15, 9, 1, FEMALE));
+        System.out.println("Male 01/09/2005: " + makeIdNumber(5, 9, 1, MALE));
     }
 
     private String makeIdNumber(int yearAfter2K, int month, int day, int gender) {

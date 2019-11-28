@@ -1,10 +1,17 @@
 package org.ninjav.vavrlombok;
 
-import io.vavr.*;
+import io.vavr.Function0;
+import io.vavr.Function1;
+import io.vavr.Function2;
+import io.vavr.Function3;
+import io.vavr.Lazy;
+import io.vavr.Tuple;
+import io.vavr.Tuple2;
 import io.vavr.collection.Array;
 import io.vavr.collection.List;
 import io.vavr.collection.Seq;
 import io.vavr.collection.Stream;
+import io.vavr.control.Either;
 import io.vavr.control.Option;
 import io.vavr.control.Try;
 import io.vavr.control.Validation;
@@ -213,6 +220,14 @@ public class TestVavr {
                 .take(100)
                 .toList()
                 .forEach(System.out::println);
+    }
+
+    static Either<String, Integer> compute(int marks) {
+        if (marks < 85) {
+            return Either.left("You failed your test! Please register to write again?");
+        } else {
+            return Either.right(marks);
+        }
     }
 
 }
