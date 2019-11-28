@@ -1,18 +1,9 @@
 apply plugin: 'java'
 apply plugin: 'application'
-apply plugin: GreetingPlugin
 
 description = 'A sample project to learn gradle concepts'
 version = 0.1
 sourceCompatibility = 1.8
-
-class GreetingPlugin implements Plugin<Project> {
-	void apply(Project project) {
-		project.task('hello') <<  {
-			println 'Hello from the GreetingPlugin'
-		}
-	}
-}
 
 repositories {
 	mavenCentral()
@@ -28,11 +19,11 @@ dependencies {
 	testCompile 'com.typesafe.akka:akka-testkit_2.12:2.6.0-M2'
 	// Testing
 	testCompile group: 'junit', name: 'junit', version: '4.+'
+	// Extensions
 	compile group: 'io.vavr', name: 'vavr', version: '0.10.0'
 	compile group: 'org.projectlombok', name: 'lombok', version: '1.18.8'
-    // https://mvnrepository.com/artifact/com.opencsv/opencsv
+	// Libraries
     compile group: 'com.opencsv', name: 'opencsv', version: '4.6'
-    // https://mvnrepository.com/artifact/oracle/oracle-jdbc
     compile group: 'oracle', name: 'oracle-jdbc', version: '12.1.0.2'
 }
 
@@ -47,5 +38,3 @@ jar {
 run {
 	standardInput = System.in
 }
-
-
